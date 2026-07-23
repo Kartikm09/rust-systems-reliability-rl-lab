@@ -1,0 +1,17 @@
+name: Security
+on:
+  push:
+  pull_request:
+  schedule: [{ cron: "23 4 * * 1" }]
+permissions: { contents: read }
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python scripts/secret_scan.py
+      - uses: rustsec/audit-check@v2.0.0
+        with: { token: "${{ secrets.GITHUB_TOKEN }}" }
+      - uses: EmbarkStudios/cargo-deny-action@v2
