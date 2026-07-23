@@ -1,0 +1,18 @@
+[advisories]
+yanked = "deny"
+unmaintained = "all"
+
+[licenses]
+allow = ["Apache-2.0", "MIT", "Unicode-3.0", "BSD-2-Clause"]
+confidence-threshold = 0.8
+
+[bans]
+multiple-versions = "warn"
+wildcards = "deny"
+skip = [
+  { crate = "syn@2.0.119", reason = "Proptest and Criterion transitively retain Syn 2 while current derive crates use Syn 3; both are build-time only." },
+]
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"

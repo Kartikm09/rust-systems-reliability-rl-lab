@@ -1,0 +1,16 @@
+[package]
+name = "service"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+parser = { path = "../parser", version = "0.1.0" }
+protocol = { path = "../protocol", version = "0.1.0" }
+scheduler = { path = "../scheduler", version = "0.1.0" }
+storage = { path = "../storage", version = "0.1.0" }
+
+[lints]
+workspace = true

@@ -1,0 +1,20 @@
+[package]
+name = "benchmarks"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+criterion.workspace = true
+parser = { path = "../crates/parser", version = "0.1.0" }
+protocol = { path = "../crates/protocol", version = "0.1.0" }
+scheduler = { path = "../crates/scheduler", version = "0.1.0" }
+
+[[bench]]
+name = "scheduler_benchmark"
+harness = false
+
+[lints]
+workspace = true
