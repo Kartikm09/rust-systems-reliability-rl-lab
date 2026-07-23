@@ -1,0 +1,8 @@
+.DS_Store
+.env
+target/
+**/target/
+__pycache__/
+*.py[cod]
+.venv/
+reports/evaluations/*/manual/
