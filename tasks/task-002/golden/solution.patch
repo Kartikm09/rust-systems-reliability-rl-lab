@@ -1,0 +1,32 @@
+diff --git a/CANDIDATE_NOTES.md b/CANDIDATE_NOTES.md
+new file mode 100644
+--- /dev/null
++++ b/CANDIDATE_NOTES.md
+@@ -0,0 +1,3 @@
++# Candidate Notes
++
++Transitions accepting state before a bounded FIFO drain and reports both completed and retained jobs; no waiting or detached work is introduced.
+diff --git a/src/lib.rs b/src/lib.rs
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -5,6 +5,8 @@
+ pub struct Job { pub id: u64 }
+ #[derive(Debug, Eq, PartialEq)]
+ pub enum SubmitError { Full, ShuttingDown }
++#[derive(Debug, Eq, PartialEq)]
++pub struct ShutdownSummary { pub completed: Vec<Job>, pub remaining: usize }
+ pub struct Scheduler { capacity: usize, queue: VecDeque<Job>, accepting: bool }
+ impl Scheduler {
+     pub fn new(capacity: usize) -> Self { Self { capacity, queue: VecDeque::new(), accepting: true } }
+@@ -14,5 +16,10 @@
+         self.queue.push_back(job); Ok(())
+     }
+     pub fn take(&mut self) -> Option<Job> { self.queue.pop_front() }
+-    pub fn stop(&mut self) { self.accepting = false; self.queue.clear(); }
++    pub fn shutdown_and_drain(&mut self, completion_limit: usize) -> ShutdownSummary {
++        self.accepting = false;
++        let completed: Vec<Job> = (0..completion_limit).filter_map(|_| self.queue.pop_front()).collect();
++        ShutdownSummary { completed, remaining: self.queue.len() }
++    }
++    pub fn stop(&mut self) { let _ = self.shutdown_and_drain(0); }
+ }

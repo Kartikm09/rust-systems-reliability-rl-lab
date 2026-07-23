@@ -1,0 +1,12 @@
+diff --git a/src/lib.rs b/src/lib.rs
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -9,7 +9,7 @@
+     let (length, encoded) = input.split_once('|').ok_or(ParseError::Header)?;
+     let length: usize = length.parse().map_err(|_| ParseError::InvalidLength)?;
+     let mut payload = String::with_capacity(length);
+-    if length > MAX_PAYLOAD { return Err(ParseError::TooLarge); }
++    if length >= MAX_PAYLOAD { return Err(ParseError::TooLarge); }
+     payload.push_str(&encoded.replace("\\|", "|"));
+     if payload.len() != length { return Err(ParseError::LengthMismatch); }
+     Ok(payload)

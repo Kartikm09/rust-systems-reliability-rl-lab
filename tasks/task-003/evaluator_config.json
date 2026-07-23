@@ -1,0 +1,68 @@
+{
+  "acceptance_score": 80,
+  "allowed_paths": [
+    "src/**",
+    "CANDIDATE_NOTES.md"
+  ],
+  "build_failure_class": "compile_error",
+  "commands": {
+    "build": [
+      "cargo",
+      "check",
+      "--all-targets",
+      "--all-features"
+    ],
+    "determinism": [
+      "bash",
+      "scripts/determinism.sh"
+    ],
+    "format": [
+      "bash",
+      "scripts/format_check.sh"
+    ],
+    "held_out_tests": [
+      "cargo",
+      "test",
+      "--test",
+      "held_out_tests"
+    ],
+    "lint": [
+      "cargo",
+      "clippy",
+      "--all-targets",
+      "--all-features",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "public_tests": [
+      "cargo",
+      "test",
+      "--test",
+      "public_tests"
+    ],
+    "regression_tests": [
+      "cargo",
+      "test",
+      "--test",
+      "regression_tests"
+    ]
+  },
+  "language": "Rust",
+  "output_limit_bytes": 200000,
+  "performance": null,
+  "required_documentation": [
+    "CANDIDATE_NOTES.md"
+  ],
+  "task_id": "task-003",
+  "timeout_seconds": 90,
+  "weights": {
+    "build": 15,
+    "determinism": 5,
+    "format": 5,
+    "held_out_tests": 30,
+    "lint": 5,
+    "public_tests": 25,
+    "regression_tests": 15
+  }
+}

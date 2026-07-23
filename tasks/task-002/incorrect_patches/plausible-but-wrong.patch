@@ -1,0 +1,10 @@
+diff --git a/src/lib.rs b/src/lib.rs
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -14,5 +14,6 @@
+         self.queue.push_back(job); Ok(())
+     }
+     pub fn take(&mut self) -> Option<Job> { self.queue.pop_front() }
++    pub fn shutdown_and_drain(&mut self, _completion_limit: usize) { self.stop(); }
+     pub fn stop(&mut self) { self.accepting = false; self.queue.clear(); }
+ }

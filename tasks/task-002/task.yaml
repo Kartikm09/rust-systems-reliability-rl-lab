@@ -1,0 +1,10 @@
+id: task-002
+title: "Cancellation-aware graceful shutdown"
+category: feature_implementation
+language: Rust
+deterministic_seed: 20260723
+candidate_workspace: baseline/workspace
+public_tests: public_tests
+held_out_tests: held_out_tests
+acceptance_score: 80
+synthetic: true
