@@ -1,0 +1,122 @@
+{
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 13,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--all-targets",
+        "--all-features",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "duration_ms": 363,
+      "name": "lint",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "    Checking candidate-task v0.1.0 (<temporary-path>\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.23s\n",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "check",
+        "--all-targets",
+        "--all-features"
+      ],
+      "duration_ms": 245,
+      "name": "build",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "    Checking candidate-task v0.1.0 (<temporary-path>\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.18s\n",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--test",
+        "public_tests"
+      ],
+      "duration_ms": 864,
+      "name": "public_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "   Compiling candidate-task v0.1.0 (<temporary-path>\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.38s\n     Running tests/public_tests.rs (target/debug/deps/public_tests-81a034679fa12458)\n",
+      "stdout": "\nrunning 1 test\ntest fifo_and_history_are_preserved ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--test",
+        "held_out_tests"
+      ],
+      "duration_ms": 651,
+      "name": "held_out_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "   Compiling candidate-task v0.1.0 (<temporary-path>\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s\n     Running tests/held_out_tests.rs (target/debug/deps/held_out_tests-a36fdbb22362fe92)\n",
+      "stdout": "\nrunning 1 test\ntest empty_queue_and_metric_are_stable ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--test",
+        "regression_tests"
+      ],
+      "duration_ms": 638,
+      "name": "regression_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "   Compiling candidate-task v0.1.0 (<temporary-path>\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s\n     Running tests/regression_tests.rs (target/debug/deps/regression_tests-2e80d64b15ab2975)\n",
+      "stdout": "\nrunning 1 test\ntest payload_ownership_preserves_values ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/run_benchmark.sh"
+      ],
+      "duration_ms": 440,
+      "name": "benchmark",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "{\"metric\":\"clone_work\",\"value\":0}\n\nclone_work=0.0; threshold lower 0",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/determinism.sh"
+      ],
+      "duration_ms": 5,
+      "name": "determinism",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "seed=20260723;result=stable\n",
+      "timed_out": false
+    }
+  ],
+  "task_id": "task-004"
+}

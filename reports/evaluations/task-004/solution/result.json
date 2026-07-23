@@ -1,0 +1,185 @@
+{
+  "acceptance_score": 80,
+  "accepted": true,
+  "changed_files": [
+    {
+      "after_sha256": "19d00b72cd02e2ca2f6fc2b160f6577e0d5a5877845a2ee93de2ffcdcfa715fc",
+      "before_sha256": null,
+      "path": "CANDIDATE_NOTES.md"
+    },
+    {
+      "after_sha256": "0a3923bb299b1e3167977d81532ce3152b5755849f69f4277dc5d9568fddf3c3",
+      "before_sha256": "bd06175bbc30bad739f852fc73f8d30745182c6b1223ef863b6b8d0f59b403f1",
+      "path": "src/bin/benchmark_probe.rs"
+    },
+    {
+      "after_sha256": "0680a07d6fec82333e8cd5e86003491e56c15b272c1c45e27a29ab97100ac0a1",
+      "before_sha256": "5d6e574a5d9dedadf6ca056e5aeb97a0b4afaa57b933f91d49633f7ae6d4f47a",
+      "path": "src/lib.rs"
+    }
+  ],
+  "classification": "accepted",
+  "dry_run": false,
+  "evaluator_version": "0.1.0",
+  "message": "All configured quality gates passed",
+  "score": 100,
+  "score_breakdown": {
+    "awarded": {
+      "benchmark": 10,
+      "build": 15,
+      "determinism": 5,
+      "format": 5,
+      "held_out_tests": 20,
+      "lint": 5,
+      "public_tests": 25,
+      "regression_tests": 15
+    },
+    "functional_weight": 75,
+    "maximum": 100,
+    "score": 100,
+    "weights": {
+      "benchmark": 10,
+      "build": 15,
+      "determinism": 5,
+      "format": 5,
+      "held_out_tests": 20,
+      "lint": 5,
+      "public_tests": 25,
+      "regression_tests": 15
+    }
+  },
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 13,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--all-targets",
+        "--all-features",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "duration_ms": 363,
+      "name": "lint",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "    Checking candidate-task v0.1.0 (<temporary-path>\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.23s\n",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "check",
+        "--all-targets",
+        "--all-features"
+      ],
+      "duration_ms": 245,
+      "name": "build",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "    Checking candidate-task v0.1.0 (<temporary-path>\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.18s\n",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--test",
+        "public_tests"
+      ],
+      "duration_ms": 864,
+      "name": "public_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "   Compiling candidate-task v0.1.0 (<temporary-path>\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.38s\n     Running tests/public_tests.rs (target/debug/deps/public_tests-81a034679fa12458)\n",
+      "stdout": "\nrunning 1 test\ntest fifo_and_history_are_preserved ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--test",
+        "held_out_tests"
+      ],
+      "duration_ms": 651,
+      "name": "held_out_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "   Compiling candidate-task v0.1.0 (<temporary-path>\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.22s\n     Running tests/held_out_tests.rs (target/debug/deps/held_out_tests-a36fdbb22362fe92)\n",
+      "stdout": "\nrunning 1 test\ntest empty_queue_and_metric_are_stable ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--test",
+        "regression_tests"
+      ],
+      "duration_ms": 638,
+      "name": "regression_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "   Compiling candidate-task v0.1.0 (<temporary-path>\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.20s\n     Running tests/regression_tests.rs (target/debug/deps/regression_tests-2e80d64b15ab2975)\n",
+      "stdout": "\nrunning 1 test\ntest payload_ownership_preserves_values ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/run_benchmark.sh"
+      ],
+      "duration_ms": 440,
+      "name": "benchmark",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "{\"metric\":\"clone_work\",\"value\":0}\n\nclone_work=0.0; threshold lower 0",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/determinism.sh"
+      ],
+      "duration_ms": 5,
+      "name": "determinism",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "seed=20260723;result=stable\n",
+      "timed_out": false
+    }
+  ],
+  "supported_classifications": [
+    "accepted",
+    "compile_error",
+    "build_error",
+    "test_failure",
+    "regression_failure",
+    "runtime_error",
+    "timeout",
+    "performance_regression",
+    "malformed_patch",
+    "prohibited_file_change",
+    "nondeterministic_result",
+    "incomplete_solution"
+  ],
+  "task_id": "task-004"
+}

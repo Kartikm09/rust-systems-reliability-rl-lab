@@ -1,0 +1,165 @@
+{
+  "acceptance_score": 80,
+  "accepted": true,
+  "changed_files": [
+    {
+      "after_sha256": "a64da4a7994a88b153dce3a158acc308f375336c10ee35b341cf299848b9f11c",
+      "before_sha256": null,
+      "path": "CANDIDATE_NOTES.md"
+    },
+    {
+      "after_sha256": "9aed80c8296b024419899758494ee2be03d4b1c3c1501296daea539857e16893",
+      "before_sha256": "96660ccc0603cdfccffcf5dd711d80e1665b122dc4d8ce5edf4659af0ec9d8c9",
+      "path": "src/lib.rs"
+    }
+  ],
+  "classification": "accepted",
+  "dry_run": false,
+  "evaluator_version": "0.1.0",
+  "message": "All configured quality gates passed",
+  "score": 100,
+  "score_breakdown": {
+    "awarded": {
+      "build": 15,
+      "determinism": 5,
+      "format": 5,
+      "held_out_tests": 30,
+      "lint": 5,
+      "public_tests": 25,
+      "regression_tests": 15
+    },
+    "functional_weight": 85,
+    "maximum": 100,
+    "score": 100,
+    "weights": {
+      "build": 15,
+      "determinism": 5,
+      "format": 5,
+      "held_out_tests": 30,
+      "lint": 5,
+      "public_tests": 25,
+      "regression_tests": 15
+    }
+  },
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 24,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--all-targets",
+        "--all-features",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "duration_ms": 423,
+      "name": "lint",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "    Checking candidate-task v0.1.0 (<temporary-path>\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.28s\n",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "check",
+        "--all-targets",
+        "--all-features"
+      ],
+      "duration_ms": 315,
+      "name": "build",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "    Checking candidate-task v0.1.0 (<temporary-path>\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.27s\n",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--test",
+        "public_tests"
+      ],
+      "duration_ms": 1414,
+      "name": "public_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "   Compiling candidate-task v0.1.0 (<temporary-path>\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.85s\n     Running tests/public_tests.rs (target/debug/deps/public_tests-0d130270303b453d)\n",
+      "stdout": "\nrunning 1 test\ntest errors_are_structured_with_stable_text ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--test",
+        "held_out_tests"
+      ],
+      "duration_ms": 845,
+      "name": "held_out_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "   Compiling candidate-task v0.1.0 (<temporary-path>\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.44s\n     Running tests/held_out_tests.rs (target/debug/deps/held_out_tests-05c53be6953b258f)\n",
+      "stdout": "\nrunning 2 tests\ntest source_has_no_string_error_result ... ok\ntest success_and_exit_codes_are_compatible ... ok\n\ntest result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--test",
+        "regression_tests"
+      ],
+      "duration_ms": 618,
+      "name": "regression_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "   Compiling candidate-task v0.1.0 (<temporary-path>\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.18s\n     Running tests/regression_tests.rs (target/debug/deps/regression_tests-9b7da828de1c4e60)\n",
+      "stdout": "\nrunning 1 test\ntest integer_boundaries_remain_standard ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/determinism.sh"
+      ],
+      "duration_ms": 6,
+      "name": "determinism",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "seed=20260723;result=stable\n",
+      "timed_out": false
+    }
+  ],
+  "supported_classifications": [
+    "accepted",
+    "compile_error",
+    "build_error",
+    "test_failure",
+    "regression_failure",
+    "runtime_error",
+    "timeout",
+    "performance_regression",
+    "malformed_patch",
+    "prohibited_file_change",
+    "nondeterministic_result",
+    "incomplete_solution"
+  ],
+  "task_id": "task-003"
+}

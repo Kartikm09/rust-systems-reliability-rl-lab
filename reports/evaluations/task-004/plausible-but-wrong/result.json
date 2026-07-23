@@ -1,0 +1,92 @@
+{
+  "acceptance_score": 80,
+  "accepted": false,
+  "changed_files": [
+    {
+      "after_sha256": "c64940153858deae9a1dd00918e49dc4c8cce86a5736eae9b327a70340f5e8db",
+      "before_sha256": "5d6e574a5d9dedadf6ca056e5aeb97a0b4afaa57b933f91d49633f7ae6d4f47a",
+      "path": "src/lib.rs"
+    }
+  ],
+  "classification": "incomplete_solution",
+  "dry_run": false,
+  "evaluator_version": "0.1.0",
+  "message": "Required candidate documentation is missing",
+  "score": 5,
+  "score_breakdown": {
+    "awarded": {
+      "benchmark": 0,
+      "build": 0,
+      "determinism": 0,
+      "format": 5,
+      "held_out_tests": 0,
+      "lint": 0,
+      "public_tests": 0,
+      "regression_tests": 0
+    },
+    "functional_weight": 75,
+    "maximum": 100,
+    "missing_documentation": [
+      "CANDIDATE_NOTES.md"
+    ],
+    "score": 5,
+    "weights": {
+      "benchmark": 10,
+      "build": 15,
+      "determinism": 5,
+      "format": 5,
+      "held_out_tests": 20,
+      "lint": 5,
+      "public_tests": 25,
+      "regression_tests": 15
+    }
+  },
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 12,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--all-targets",
+        "--all-features",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "duration_ms": 651,
+      "name": "lint",
+      "passed": false,
+      "return_code": 101,
+      "stderr": "    Checking candidate-task v0.1.0 (<temporary-path>\nerror[E0308]: mismatched types\n --> tests/public_tests.rs:5:22\n  |\n5 |     scheduler.submit(Job { id: 1, payload: \"a\".into() }); scheduler.submit(Job { id: 2, payload: \"b\".into() });\n  |               ------ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&Job`, found `Job`\n  |               |\n  |               arguments to this method are incorrect\n  |\nnote: method defined here\n --> src/lib.rs:8:12\n  |\n8 |     pub fn submit(&mut self, job: &Job) { self.queue.push_back(job.clone()); self.clone_work += 1; }\n  |            ^^^^^^\nhelp: consider borrowing here\n  |\n5 |     scheduler.submit(&Job { id: 1, payload: \"a\".into() }); scheduler.submit(Job { id: 2, payload: \"b\".into() });\n  |                      +\n\nerror[E0308]: mismatched types\n --> tests/public_tests.rs:5:76\n  |\n5 |     scheduler.submit(Job { id: 1, payload: \"a\".into() }); scheduler.submit(Job { id: 2, payload: \"b\".into() });\n  |                                                                     ------ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&Job`, found `Job`\n  |                                                                     |\n  |                                                                     arguments to this method are incorrect\n  |\nnote: method defined here\n --> src/lib.rs:8:12\n  |\n8 |     pub fn submit(&mut self, job: &Job) { self.queue.push_back(job.clone()); self.clone_work += 1; }\n  |            ^^^^^^\nhelp: consider borrowing here\n  |\n5 |     scheduler.submit(Job { id: 1, payload: \"a\".into() }); scheduler.submit(&Job { id: 2, payload: \"b\".into() });\n  |                                                                            +\n\nFor more information about this error, try `rustc --explain E0308`.\nerror: could not compile `candidate-task` (test \"public_tests\") due to 2 previous errors\n",
+      "stdout": "",
+      "timed_out": false
+    }
+  ],
+  "supported_classifications": [
+    "accepted",
+    "compile_error",
+    "build_error",
+    "test_failure",
+    "regression_failure",
+    "runtime_error",
+    "timeout",
+    "performance_regression",
+    "malformed_patch",
+    "prohibited_file_change",
+    "nondeterministic_result",
+    "incomplete_solution"
+  ],
+  "task_id": "task-004"
+}

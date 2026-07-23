@@ -1,0 +1,81 @@
+{
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 11,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--all-targets",
+        "--all-features",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "duration_ms": 548,
+      "name": "lint",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "    Checking candidate-task v0.1.0 (<temporary-path>\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.43s\n",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "check",
+        "--all-targets",
+        "--all-features"
+      ],
+      "duration_ms": 236,
+      "name": "build",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "    Checking candidate-task v0.1.0 (<temporary-path>\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.17s\n",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--test",
+        "public_tests"
+      ],
+      "duration_ms": 739,
+      "name": "public_tests",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "   Compiling candidate-task v0.1.0 (<temporary-path>\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.34s\n     Running tests/public_tests.rs (target/debug/deps/public_tests-0d130270303b453d)\n",
+      "stdout": "\nrunning 1 test\ntest errors_are_structured_with_stable_text ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--test",
+        "held_out_tests"
+      ],
+      "duration_ms": 858,
+      "name": "held_out_tests",
+      "passed": false,
+      "return_code": 101,
+      "stderr": "   Compiling candidate-task v0.1.0 (<temporary-path>\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.40s\n     Running tests/held_out_tests.rs (target/debug/deps/held_out_tests-05c53be6953b258f)\nerror: test failed, to rerun pass `--test held_out_tests`\n",
+      "stdout": "\nrunning 2 tests\ntest source_has_no_string_error_result ... ok\ntest success_and_exit_codes_are_compatible ... FAILED\n\nfailures:\n\n---- success_and_exit_codes_are_compatible stdout ----\n\nthread 'success_and_exit_codes_are_compatible' (1758839) panicked at tests/held_out_tests.rs:5:5:\nassertion `left == right` failed\n  left: 64\n right: 65\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n\n\nfailures:\n    success_and_exit_codes_are_compatible\n\ntest result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "timed_out": false
+    }
+  ],
+  "task_id": "task-003"
+}

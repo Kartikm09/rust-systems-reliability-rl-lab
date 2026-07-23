@@ -1,0 +1,12 @@
+[
+  {
+    "after_sha256": "3418eccc96972c3002a868224cb66c042722a0ec20c9740859fc7e44bfb664a5",
+    "before_sha256": null,
+    "path": "CANDIDATE_NOTES.md"
+  },
+  {
+    "after_sha256": "5a916b279b6e15817cb2593031edbd67a08b3b9983a172e94db19ac740fa5bbf",
+    "before_sha256": "363382f1bbf78729b2e2ca1d8946640e93e8567eaa1592e32e390f06625ec162",
+    "path": "src/lib.rs"
+  }
+]

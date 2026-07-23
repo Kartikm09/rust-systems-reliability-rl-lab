@@ -1,0 +1,17 @@
+[
+  {
+    "after_sha256": "19d00b72cd02e2ca2f6fc2b160f6577e0d5a5877845a2ee93de2ffcdcfa715fc",
+    "before_sha256": null,
+    "path": "CANDIDATE_NOTES.md"
+  },
+  {
+    "after_sha256": "0a3923bb299b1e3167977d81532ce3152b5755849f69f4277dc5d9568fddf3c3",
+    "before_sha256": "bd06175bbc30bad739f852fc73f8d30745182c6b1223ef863b6b8d0f59b403f1",
+    "path": "src/bin/benchmark_probe.rs"
+  },
+  {
+    "after_sha256": "0680a07d6fec82333e8cd5e86003491e56c15b272c1c45e27a29ab97100ac0a1",
+    "before_sha256": "5d6e574a5d9dedadf6ca056e5aeb97a0b4afaa57b933f91d49633f7ae6d4f47a",
+    "path": "src/lib.rs"
+  }
+]

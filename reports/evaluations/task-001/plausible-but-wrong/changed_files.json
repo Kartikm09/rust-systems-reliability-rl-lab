@@ -1,0 +1,7 @@
+[
+  {
+    "after_sha256": "1ef7a0fd8f7c2f1ec428736edd1cb578dde634355ab1005ad72068d95cc383ba",
+    "before_sha256": "363382f1bbf78729b2e2ca1d8946640e93e8567eaa1592e32e390f06625ec162",
+    "path": "src/lib.rs"
+  }
+]

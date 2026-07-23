@@ -1,0 +1,36 @@
+{
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 13,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--all-targets",
+        "--all-features",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "duration_ms": 622,
+      "name": "lint",
+      "passed": false,
+      "return_code": 101,
+      "stderr": "    Checking candidate-task v0.1.0 (<temporary-path>\nerror[E0609]: no field `completed` on type `()`\n --> tests/public_tests.rs:7:24\n  |\n7 |     assert_eq!(summary.completed.iter().map(|job| job.id).collect::<Vec<_>>(), vec![1, 2]);\n  |                        ^^^^^^^^^ unknown field\n\nerror[E0609]: no field `remaining` on type `()`\n --> tests/public_tests.rs:8:24\n  |\n8 |     assert_eq!(summary.remaining, 1);\n  |                        ^^^^^^^^^ unknown field\n\nFor more information about this error, try `rustc --explain E0609`.\nerror: could not compile `candidate-task` (test \"public_tests\") due to 2 previous errors\n",
+      "stdout": "",
+      "timed_out": false
+    }
+  ],
+  "task_id": "task-002"
+}

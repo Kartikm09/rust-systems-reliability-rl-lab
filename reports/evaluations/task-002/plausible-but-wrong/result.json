@@ -1,0 +1,90 @@
+{
+  "acceptance_score": 80,
+  "accepted": false,
+  "changed_files": [
+    {
+      "after_sha256": "7672aa0b757d6eb94ddf599982a3eea9a817dab7506d4a57c293fb7abc45c1ed",
+      "before_sha256": "d7fd3db7bb6bf237629b3a3086d17c1a35829fb85b98265e319069bae8b0a616",
+      "path": "src/lib.rs"
+    }
+  ],
+  "classification": "incomplete_solution",
+  "dry_run": false,
+  "evaluator_version": "0.1.0",
+  "message": "Required candidate documentation is missing",
+  "score": 5,
+  "score_breakdown": {
+    "awarded": {
+      "build": 0,
+      "determinism": 0,
+      "format": 5,
+      "held_out_tests": 0,
+      "lint": 0,
+      "public_tests": 0,
+      "regression_tests": 0
+    },
+    "functional_weight": 85,
+    "maximum": 100,
+    "missing_documentation": [
+      "CANDIDATE_NOTES.md"
+    ],
+    "score": 5,
+    "weights": {
+      "build": 15,
+      "determinism": 5,
+      "format": 5,
+      "held_out_tests": 30,
+      "lint": 5,
+      "public_tests": 25,
+      "regression_tests": 15
+    }
+  },
+  "stages": [
+    {
+      "command": [
+        "bash",
+        "scripts/format_check.sh"
+      ],
+      "duration_ms": 13,
+      "name": "format",
+      "passed": true,
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "",
+      "timed_out": false
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--all-targets",
+        "--all-features",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "duration_ms": 622,
+      "name": "lint",
+      "passed": false,
+      "return_code": 101,
+      "stderr": "    Checking candidate-task v0.1.0 (<temporary-path>\nerror[E0609]: no field `completed` on type `()`\n --> tests/public_tests.rs:7:24\n  |\n7 |     assert_eq!(summary.completed.iter().map(|job| job.id).collect::<Vec<_>>(), vec![1, 2]);\n  |                        ^^^^^^^^^ unknown field\n\nerror[E0609]: no field `remaining` on type `()`\n --> tests/public_tests.rs:8:24\n  |\n8 |     assert_eq!(summary.remaining, 1);\n  |                        ^^^^^^^^^ unknown field\n\nFor more information about this error, try `rustc --explain E0609`.\nerror: could not compile `candidate-task` (test \"public_tests\") due to 2 previous errors\n",
+      "stdout": "",
+      "timed_out": false
+    }
+  ],
+  "supported_classifications": [
+    "accepted",
+    "compile_error",
+    "build_error",
+    "test_failure",
+    "regression_failure",
+    "runtime_error",
+    "timeout",
+    "performance_regression",
+    "malformed_patch",
+    "prohibited_file_change",
+    "nondeterministic_result",
+    "incomplete_solution"
+  ],
+  "task_id": "task-002"
+}
